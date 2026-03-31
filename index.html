@@ -462,6 +462,14 @@
       color: #555;
     }
  
+    .result-challenge {
+      font-size: clamp(16px, 4vw, 24px);
+      font-weight: 700;
+      color: #e65100;
+      margin-bottom: 20px;
+      min-height: 1.6em;
+    }
+
     .result-links {
       display: flex;
       flex-direction: column;
@@ -571,21 +579,20 @@
         <div id="nickname-error" class="error-text"></div>
       </div>
  
+      <div class="notes">
+        <div class="notes-title">各問題を解くときの注意点</div>
+        ① 各問題の制限時間は６０秒です。<br>
+        ② 問題は、答え直すことはできません。<br>
+        ③ 間違えた問題のみをやり直すことは出来ますが、正解ならば青い画面、間違いならば赤い画面になるだけです。<br>
+        ④ ランダムで問題が出題されますので、何度でも挑戦してみてください。
+      </div>
+
       <div class="menu-buttons">
         <button class="menu-btn practice" data-count="10">🔷 10問挑戦</button>
         <button class="menu-btn" data-count="30">🔶 30問挑戦</button>
         <button class="menu-btn" data-count="50">💎 50問挑戦</button>
         <button class="menu-btn" data-count="100">⭐ 100問挑戦</button>
         <button class="menu-btn all" data-count="9999">🔥 全問挑戦（233問）</button>
-      </div>
- 
-      <div class="notes">
-        <div class="notes-title">各問題を解くときの注意点</div>
-        ① 各問題の制限時間は６０秒です。<br>
-        ② 問題は、答え直すことはできません。<br>
-        ③ ８０％の正解で、合格となります。<br>
-        ④ 間違えた問題のみをやり直すことは出来ますが、正解ならば青い画面、間違いならば赤い画面になるだけです。<br>
-        ⑤ ランダムで問題が出題されますので、何度でも挑戦してみてください。
       </div>
     </div>
   </section>
@@ -616,6 +623,7 @@
     <div class="result-inner">
       <div id="result-message" class="result-message"></div>
       <div id="result-badge" class="result-badge"></div>
+      <div id="result-challenge" class="result-challenge"></div>
       <div class="result-links">
         <a id="retry-link">間違った問題を再度解き直す</a>
         <a id="home-link">ホーム画面に戻る</a>
@@ -637,7 +645,7 @@
       {q:"アセンション後、三次元物理世界は物質性がかなり薄くなる", a:"○"},
       {q:"アセンション後は遺伝子そのものが変化しない", a:"×"},
       {q:"アセンション後は感謝という想念がなくなる", a:"×"},
-      {q:"アセンション後に、どんな仕事をすべきかは上からのみ令で決まる", a:"×"},
+      {q:"アセンション後に、どんな仕事をすべきかは上からの命令で決まる", a:"×"},
       {q:"あきらめながら自分自身を愛してはいけない", a:"×"},
       {q:"あまりやすらぎすぎ、過去のところで停留するのが中道の極致である", a:"×"},
       {q:"聖アントニウス(アントニー)は、銀河系のプリンスである", a:"○"},
@@ -654,13 +662,13 @@
       {q:"オーム宇宙は、多次元的な多層構造で構成されている", a:"○"},
       {q:"オーム宇宙がビッグ・バンの爆発で始まったのは、今から約150億年前である", a:"×"},
       {q:"はからずも亡くなった人の学びのため、霊域を設けて、必ず三次元に帰ってこれる", a:"×"},
-      {q:"各人それぞれに「罪に関連しない」最適なカルマがあればならない", a:"○"},
-      {q:"風の神が自分の心に防風雨を降らしてもよい", a:"×"},
+      {q:"各人それぞれに「罪に関連しない」最適なカルマがなければならない", a:"○"},
+      {q:"風の神が自分の心に暴風雨を降らしてもよい", a:"×"},
       {q:"神への感謝の気持ちは、自分の想念の内側で繰り返すことが望ましい", a:"○"},
       {q:"キラリオンは、魂の属性を男性、女性、中性の三属性で説明している", a:"○"},
       {q:"科学に霊性が取り入れられることもある", a:"○"},
       {q:"科学も芸術も、霊界からのインスピレーションで地上にもたらされる", a:"○"},
-      {q:"過去世で蓄えられた大知恵を「バーニャ・パラミッタ」と呼ぶ", a:"○"},
+      {q:"過去世で蓄えられた大知恵を「パーニャ・パラミッタ」と呼ぶ", a:"○"},
       {q:"過去の自らの至らぬ経験は忘れても構わない", a:"×"},
       {q:"三次元に住んでいる限り、カルマの刈り取りは避けられない", a:"○"},
       {q:"神に対する愛の想いが深くなるほど、愛の実践は加速すべきである", a:"○"},
@@ -698,7 +706,7 @@
       {q:"反省を行うことは、心を磨くための不可欠な修行方法である", a:"○"},
       {q:"不合格は、今世の学びが不十分であったことを意味する", a:"○"},
       {q:"本体が地上にいる間は、分身の一人が守護霊を務める", a:"○"},
-      {q:"未来を悲観しすぎても、霊等成長は望めない", a:"○"},
+      {q:"未来を悲観しすぎても、霊的成長は望めない", a:"○"},
       {q:"無限のエネルギーの流れを「愛」と定義している", a:"○"},
       {q:"迷ったときは、神にゆだねるのではなく、自らの力で切り開くことが重要である", a:"×"},
       {q:"守護霊は地上の魂の兄弟を守護しなくてもいいことがある", a:"×"},
@@ -1083,10 +1091,13 @@
       const pass  = correctCount >= Math.ceil(total * PASS_RATE);
  
       resultMessage.textContent = `大変お疲れ様でした。あなたの正解数は ${correctCount}／${total} です。`;
-      resultBadge.textContent   = pass ? '合格' : '不合格';
+      resultBadge.textContent   = `${correctCount}問正解！！`;
       resultBadge.className     = 'result-badge ' + (pass ? 'pass' : 'fail');
       resultScreen.classList.remove('pass', 'fail');
       resultScreen.classList.add(pass ? 'pass' : 'fail');
+
+      const challengeEl = document.getElementById('result-challenge');
+      challengeEl.textContent = wrongQuestions.length > 0 ? 'また挑戦してね！次こそ全問正解☆' : '';
  
       if (pass) {
         makeConfetti();
