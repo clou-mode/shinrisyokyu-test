@@ -6,7 +6,7 @@
   <title>神理 初級テスト ○×クイズ</title>
   <style>
     * { box-sizing: border-box; }
- 
+
     :root {
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-right: env(safe-area-inset-right, 0px);
@@ -20,7 +20,7 @@
       --ok-bg: #d8efff;
       --ng-bg: #ffd9d9;
     }
- 
+
     html, body {
       margin: 0;
       padding: 0;
@@ -32,41 +32,32 @@
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
     }
- 
-    body {
-      overflow-x: hidden;
-    }
- 
-    button, input {
-      font-family: inherit;
-    }
- 
+
+    body { overflow-x: hidden; }
+    button, input { font-family: inherit; }
+
     button {
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
     }
- 
+
     a {
       color: #0b57d0;
       text-decoration: none;
       cursor: pointer;
     }
- 
-    a:hover {
-      text-decoration: underline;
-    }
- 
+
+    a:hover { text-decoration: underline; }
+
     .screen {
       display: none;
       width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
     }
- 
-    .screen.active {
-      display: flex;
-    }
- 
+
+    .screen.active { display: flex; }
+
     /* ドア演出 */
     .door-transition {
       position: fixed;
@@ -76,11 +67,9 @@
       display: none;
       overflow: hidden;
     }
- 
-    .door-transition.active {
-      display: block;
-    }
- 
+
+    .door-transition.active { display: block; }
+
     .door-panel {
       position: absolute;
       top: 0;
@@ -89,19 +78,19 @@
       background: linear-gradient(180deg, #6d4c41 0%, #4e342e 50%, #3e2723 100%);
       box-shadow: inset 0 0 0 3px rgba(255,255,255,.08);
     }
- 
+
     .door-left {
       left: 0;
       border-right: 2px solid rgba(255,255,255,.15);
       animation: openLeftDoor .8s ease forwards;
     }
- 
+
     .door-right {
       right: 0;
       border-left: 2px solid rgba(255,255,255,.15);
       animation: openRightDoor .8s ease forwards;
     }
- 
+
     .door-panel::before {
       content: "";
       position: absolute;
@@ -113,20 +102,20 @@
       background: radial-gradient(circle at 35% 35%, #ffd54f, #c49000);
       box-shadow: 0 0 10px rgba(0,0,0,.25);
     }
- 
+
     .door-left::before { right: 26px; }
     .door-right::before { left: 26px; }
- 
+
     @keyframes openLeftDoor {
       from { transform: translateX(0); }
       to { transform: translateX(-100%); }
     }
- 
+
     @keyframes openRightDoor {
       from { transform: translateX(0); }
       to { transform: translateX(100%); }
     }
- 
+
     /* ランディング画面 */
     #landing-screen {
       background: #fff;
@@ -139,26 +128,26 @@
         max(20px, var(--safe-bottom))
         max(16px, var(--safe-left));
     }
- 
+
     .landing-inner {
       width: min(100%, 1000px);
       margin: 0 auto;
     }
- 
+
     .title-line-1 {
       font-size: clamp(20px, 5vw, 40px);
       font-weight: 700;
       margin-bottom: 16px;
       line-height: 1.4;
     }
- 
+
     .title-line-2 {
       font-size: clamp(16px, 4.2vw, 28px);
       font-weight: 700;
       margin-bottom: 20px;
       line-height: 1.6;
     }
- 
+
     .title-line-3 {
       font-size: clamp(52px, 14vw, 110px);
       font-weight: 900;
@@ -167,7 +156,7 @@
       letter-spacing: .08em;
       word-break: keep-all;
     }
- 
+
     .title-line-4 {
       font-size: clamp(24px, 6vw, 50px);
       font-weight: 900;
@@ -175,11 +164,9 @@
       letter-spacing: .06em;
       color: #1976d2;
     }
- 
-    ruby rt {
-      font-size: 0.45em;
-    }
- 
+
+    ruby rt { font-size: 0.45em; }
+
     .rainbow-btn {
       border: none;
       border-radius: 999px;
@@ -195,17 +182,17 @@
       animation: rainbowFlow 5s linear infinite;
       transition: transform .15s ease, box-shadow .15s ease;
     }
- 
+
     .rainbow-btn:hover {
       transform: translateY(-2px) scale(1.02);
       box-shadow: 0 18px 38px rgba(0,0,0,.24);
     }
- 
+
     @keyframes rainbowFlow {
       0% { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
     }
- 
+
     /* メニュー画面 */
     #menu-screen {
       background: #fff;
@@ -217,7 +204,7 @@
         max(16px, var(--safe-bottom))
         max(12px, var(--safe-left));
     }
- 
+
     .menu-card {
       width: min(100%, 920px);
       background: #fff;
@@ -228,7 +215,7 @@
       max-height: 96dvh;
       overflow-y: auto;
     }
- 
+
     .menu-title {
       text-align: center;
       font-size: clamp(22px, 5.5vw, 40px);
@@ -236,16 +223,16 @@
       margin-bottom: 22px;
       line-height: 1.4;
     }
- 
+
     .form-row { margin-bottom: 18px; }
- 
+
     .label {
       display: block;
       font-size: clamp(16px, 4.2vw, 20px);
       font-weight: 700;
       margin-bottom: 10px;
     }
- 
+
     .nickname-input {
       width: 100%;
       font-size: clamp(16px, 4.2vw, 22px);
@@ -254,19 +241,19 @@
       border-radius: 14px;
       outline: none;
     }
- 
+
     .nickname-input:focus {
       border-color: var(--blue);
       box-shadow: 0 0 0 4px rgba(25,118,210,.12);
     }
- 
+
     .error-text {
       color: #d32f2f;
       font-size: 14px;
       min-height: 20px;
       margin-top: 8px;
     }
- 
+
     .menu-buttons {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -274,7 +261,7 @@
       margin-top: 8px;
       margin-bottom: 24px;
     }
- 
+
     .menu-btn {
       border: none;
       border-radius: 16px;
@@ -288,23 +275,23 @@
       box-shadow: 0 8px 24px rgba(21,101,192,.22);
       transition: transform .15s ease, box-shadow .15s ease;
     }
- 
+
     .menu-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 30px rgba(21,101,192,.28);
     }
- 
+
     .menu-btn.practice {
       background: linear-gradient(135deg, #2e7d32, #66bb6a);
       box-shadow: 0 8px 24px rgba(46,125,50,.24);
     }
- 
+
     .menu-btn.all {
       background: linear-gradient(135deg, #b71c1c, #ef5350);
       box-shadow: 0 8px 24px rgba(183,28,28,.24);
       grid-column: 1 / -1;
     }
- 
+
     .notes {
       border-radius: 18px;
       background: #f8fbff;
@@ -313,13 +300,13 @@
       line-height: 1.9;
       font-size: clamp(15px, 4vw, 18px);
     }
- 
+
     .notes-title {
       font-weight: 900;
       font-size: clamp(18px, 4.6vw, 22px);
       margin-bottom: 8px;
     }
- 
+
     /* クイズ画面 */
     #quiz-screen {
       background: #fff;
@@ -327,10 +314,10 @@
       justify-content: stretch;
       transition: background-color .12s linear;
     }
- 
+
     #quiz-screen.flash-correct { background: var(--ok-bg); }
-    #quiz-screen.flash-wrong { background: var(--ng-bg); }
- 
+    #quiz-screen.flash-wrong   { background: var(--ng-bg); }
+
     .quiz-wrap {
       width: 100%;
       min-height: 100vh;
@@ -343,10 +330,10 @@
         max(8px, var(--safe-bottom))
         max(8px, var(--safe-left));
     }
- 
+
     .quiz-top { padding: 8px 8px 0; }
     .timer-wrap { width: 100%; }
- 
+
     .timer-bar-bg {
       width: 100%;
       height: clamp(16px, 3.5vw, 24px);
@@ -355,14 +342,14 @@
       border-radius: 999px;
       overflow: hidden;
     }
- 
+
     .timer-bar {
       width: 100%;
       height: 100%;
       background: linear-gradient(90deg, var(--light-blue), var(--blue));
       transition: width .1s linear;
     }
- 
+
     .question-box {
       flex: 1;
       display: flex;
@@ -371,7 +358,7 @@
       padding: clamp(16px, 4vw, 34px) clamp(10px, 3vw, 20px) 12px;
       overflow-y: auto;
     }
- 
+
     .question-text {
       width: min(100%, 1200px);
       text-align: center;
@@ -387,7 +374,7 @@
       background: rgba(240, 246, 255, 0.7);
       box-shadow: 0 2px 12px rgba(25, 118, 210, 0.07);
     }
- 
+
     .answer-row {
       width: 100%;
       min-height: 30vh;
@@ -396,7 +383,7 @@
       border-top: 2px solid #ddd;
       margin-top: auto;
     }
- 
+
     .answer-btn {
       width: 50%;
       height: 100%;
@@ -408,13 +395,15 @@
       transition: background .15s ease, transform .05s ease, opacity .15s ease;
       user-select: none;
     }
- 
+
     .answer-btn:active { transform: scale(.995); }
     .answer-btn[disabled] { opacity: .78; cursor: default; }
     .answer-btn.maru { color: var(--red); }
     .answer-btn.batsu { color: #222; border-left: 2px solid #ddd; }
- 
-    /* リザルト画面 */
+
+    /* ========================================
+       リザルト画面 — 華やかバージョン
+       ======================================== */
     #result-screen {
       position: relative;
       align-items: center;
@@ -427,41 +416,92 @@
         max(16px, var(--safe-left));
       overflow: hidden;
     }
- 
-    #result-screen.pass { background: #fff; }
-    #result-screen.fail { background: var(--bg-gray); }
- 
+
+    /* 合格：黄金のグラデーション背景 */
+    #result-screen.pass {
+      background: radial-gradient(ellipse at 50% 30%, #fff9e6 0%, #fff3b0 40%, #ffd740 100%);
+    }
+
+    /* 不合格：落ち着いたグレー */
+    #result-screen.fail {
+      background: var(--bg-gray);
+    }
+
     .result-inner {
       position: relative;
       z-index: 2;
       width: min(100%, 1100px);
     }
- 
+
+    /* 合格時 — 輝くタイトル */
+    .result-crown {
+      font-size: clamp(40px, 10vw, 80px);
+      line-height: 1;
+      margin-bottom: 8px;
+      animation: crownBounce 1s ease infinite alternate;
+      display: none;
+    }
+
+    #result-screen.pass .result-crown { display: block; }
+
+    @keyframes crownBounce {
+      from { transform: translateY(0) rotate(-5deg); }
+      to   { transform: translateY(-8px) rotate(5deg); }
+    }
+
     .result-message {
-      font-size: clamp(20px, 4.6vw, 40px);
+      font-size: clamp(18px, 4vw, 36px);
       font-weight: 900;
       line-height: 1.7;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
- 
+
+    /* 合格バッジ — レインボーグラデーション文字 */
     .result-badge {
       font-weight: 900;
       line-height: 1;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       letter-spacing: .08em;
     }
- 
+
     .result-badge.pass {
       font-size: clamp(60px, 16vw, 180px);
-      color: #d81b60;
-      text-shadow: 0 4px 18px rgba(216,27,96,.15);
+      background: linear-gradient(90deg, #ff1744, #ff9100, #ffee58, #00c853, #00b0ff, #d500f9);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: rainbowFlow 3s linear infinite, scorePop .5s cubic-bezier(.34,1.56,.64,1) both;
+      filter: drop-shadow(0 4px 12px rgba(255,167,38,.4));
     }
- 
+
     .result-badge.fail {
       font-size: clamp(54px, 14vw, 150px);
       color: #555;
+      animation: scorePop .5s cubic-bezier(.34,1.56,.64,1) both;
     }
- 
+
+    @keyframes scorePop {
+      0%   { transform: scale(0.4) rotate(-8deg); opacity: 0; }
+      100% { transform: scale(1) rotate(0deg);    opacity: 1; }
+    }
+
+    /* 合格時のスター装飾 */
+    .result-stars {
+      font-size: clamp(20px, 4vw, 36px);
+      letter-spacing: .3em;
+      margin-bottom: 12px;
+      display: none;
+      animation: starPulse 1.5s ease infinite alternate;
+    }
+
+    #result-screen.pass .result-stars { display: block; }
+
+    @keyframes starPulse {
+      from { opacity: 0.7; transform: scale(1); }
+      to   { opacity: 1;   transform: scale(1.08); }
+    }
+
     .result-challenge {
       font-size: clamp(16px, 4vw, 24px);
       font-weight: 700;
@@ -477,14 +517,16 @@
       align-items: center;
       justify-content: center;
     }
- 
+
     .result-links a {
       font-size: clamp(16px, 4.5vw, 20pt);
       font-weight: 700;
       line-height: 1.8;
     }
- 
-    /* コンフェッティ */
+
+    /* ========================================
+       コンフェッティ（合格時・大量）
+       ======================================== */
     .confetti {
       pointer-events: none;
       position: absolute;
@@ -493,33 +535,66 @@
       z-index: 1;
       display: none;
     }
- 
+
     .confetti.show { display: block; }
- 
+
     .confetti-piece {
       position: absolute;
       top: -40px;
-      width: 12px;
-      height: 22px;
       opacity: .92;
       animation-name: confettiFall;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
-      transform: rotate(0deg);
       border-radius: 2px;
     }
- 
+
     @keyframes confettiFall {
-      0% { transform: translateY(-40px) rotate(0deg); }
-      100% { transform: translateY(110dvh) rotate(720deg); }
+      0%   { transform: translateY(-40px) rotate(0deg) translateX(0); }
+      50%  { transform: translateY(50dvh)  rotate(400deg) translateX(30px); }
+      100% { transform: translateY(110dvh) rotate(720deg) translateX(-20px); }
     }
- 
+
+    /* 花びら型 */
+    .confetti-piece.petal {
+      border-radius: 50% 0 50% 0;
+    }
+
+    /* 星型（疑似） */
+    .confetti-piece.star {
+      clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    }
+
+    /* ========================================
+       花火バースト（合格時）
+       ======================================== */
+    .firework {
+      pointer-events: none;
+      position: absolute;
+      z-index: 1;
+      display: none;
+    }
+
+    .firework.show { display: block; }
+
+    .spark {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      animation: sparkFly 1.4s ease-out forwards;
+    }
+
+    @keyframes sparkFly {
+      0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+    }
+
     /* レスポンシブ */
     @media (max-width: 1024px) {
       .menu-buttons { grid-template-columns: 1fr 1fr; }
       .answer-row { height: 32vh; }
     }
- 
+
     @media (max-width: 768px) {
       .menu-buttons { grid-template-columns: 1fr; }
       .menu-btn { padding: 16px 12px; }
@@ -528,7 +603,7 @@
       .question-text { width: 100%; max-width: 100%; }
       .answer-row { min-height: 28vh; height: 30vh; }
     }
- 
+
     @media (max-width: 480px) {
       .title-line-3 { letter-spacing: .04em; }
       .rainbow-btn { width: 100%; max-width: 260px; padding: 16px 24px; }
@@ -538,7 +613,7 @@
       .answer-btn { font-size: clamp(58px, 20vw, 96px); }
       .result-links a { font-size: 18px; }
     }
- 
+
     @media (max-height: 500px) and (orientation: landscape) {
       .quiz-wrap {
         padding-top: max(6px, var(--safe-top));
@@ -556,7 +631,7 @@
     <div class="door-panel door-left"></div>
     <div class="door-panel door-right"></div>
   </div>
- 
+
   <section id="landing-screen" class="screen active">
     <div class="landing-inner">
       <div class="title-line-1">挑戦者求む！！</div>
@@ -568,17 +643,17 @@
       <button id="enter-btn" class="rainbow-btn">入口</button>
     </div>
   </section>
- 
+
   <section id="menu-screen" class="screen">
     <div class="menu-card">
       <div class="menu-title">○×クイズ 出題選択</div>
- 
+
       <div class="form-row">
         <label for="nickname" class="label">ニックネーム（必須）</label>
         <input id="nickname" class="nickname-input" type="text" maxlength="40" placeholder="ニックネームを入力してください" />
         <div id="nickname-error" class="error-text"></div>
       </div>
- 
+
       <div class="notes">
         <div class="notes-title">各問題を解くときの注意点</div>
         ① 各問題の制限時間は６０秒です。<br>
@@ -592,11 +667,11 @@
         <button class="menu-btn" data-count="30">🔶 30問挑戦</button>
         <button class="menu-btn" data-count="50">💎 50問挑戦</button>
         <button class="menu-btn" data-count="100">⭐ 100問挑戦</button>
-        <button class="menu-btn all" data-count="9999">🔥 全問挑戦（233問）</button>
+        <button class="menu-btn all" data-count="9999">🔥 全問挑戦（232問）</button>
       </div>
     </div>
   </section>
- 
+
   <section id="quiz-screen" class="screen">
     <div class="quiz-wrap">
       <div class="quiz-top">
@@ -606,23 +681,26 @@
           </div>
         </div>
       </div>
- 
+
       <div class="question-box">
         <div id="question-text" class="question-text"></div>
       </div>
- 
+
       <div class="answer-row">
         <button id="maru-btn" class="answer-btn maru" aria-label="○">○</button>
         <button id="batsu-btn" class="answer-btn batsu" aria-label="×">×</button>
       </div>
     </div>
   </section>
- 
+
   <section id="result-screen" class="screen">
     <div id="confetti" class="confetti"></div>
+    <div id="firework" class="firework"></div>
     <div class="result-inner">
+      <div class="result-crown">👑</div>
       <div id="result-message" class="result-message"></div>
       <div id="result-badge" class="result-badge"></div>
+      <div class="result-stars">✨ ⭐ ✨ ⭐ ✨</div>
       <div id="result-challenge" class="result-challenge"></div>
       <div class="result-links">
         <a id="retry-link">間違った問題を再度解き直す</a>
@@ -630,259 +708,273 @@
       </div>
     </div>
   </section>
- 
+
   <script>
-    // ===== 問題データ（quiz_v2 より全問そのまま） =====
+    // ===== 問題データ（初級 233問） =====
     const allQuestions = [
-      {q:"1974年に日本には九次元霊が一人肉体を持って出た", a:"○"},
-      {q:"愛とはエネルギーである", a:"○"},
-      {q:"愛は入り口と出口を理解しながら大きなうねりとなる", a:"○"},
-      {q:"愛は実践を通して体得すべきものである", a:"○"},
-      {q:"相手を裁くことは、その人の成長を阻害することにつながる", a:"○"},
-      {q:"愛を実践することは魂の喜びとなることである", a:"○"},
-      {q:"悪の撲滅のためには攻撃は必要ではない", a:"×"},
-      {q:"アガシャーは三次元的表現で、アンドロメダ銀河も担当している", a:"○"},
-      {q:"アセンション後、三次元物理世界は物質性がかなり薄くなる", a:"○"},
-      {q:"アセンション後は遺伝子そのものが変化しない", a:"×"},
-      {q:"アセンション後は感謝という想念がなくなる", a:"×"},
-      {q:"アセンション後に、どんな仕事をすべきかは上からの命令で決まる", a:"×"},
-      {q:"あきらめながら自分自身を愛してはいけない", a:"×"},
-      {q:"あまりやすらぎすぎ、過去のところで停留するのが中道の極致である", a:"×"},
-      {q:"聖アントニウス(アントニー)は、銀河系のプリンスである", a:"○"},
-      {q:"アラハンの境地を越えた人は、霊道を開くことができる", a:"○"},
-      {q:"アラハンを越えると霊力も具備して働くことができる", a:"○"},
-      {q:"宇宙に関係するすべてのエネルギーを「オーム・エネルギー」という", a:"○"},
-      {q:"生まれた後の諸環境、生まれる時期は自分で決定権はない", a:"×"},
-      {q:"多くの人々がこの神理を受け入れれば、地球は一定となる", a:"○"},
-      {q:"オーム宇宙の構成は、階層的・多次元的構造をとっている", a:"○"},
-      {q:"オーム宇宙の銀河構成は、ヒューマノイド型の生命体に例えられることが多い", a:"○"},
-      {q:"オーム神霊が心をつくったため、人が己の振る舞いを見つめられるようになった", a:"○"},
-      {q:"オームとは「呼吸し、存在するもの」という意味がある", a:"○"},
-      {q:"オーム宇宙が膨張を終えたあとの逆回転は、因果律に合致している", a:"○"},
-      {q:"オーム宇宙は、多次元的な多層構造で構成されている", a:"○"},
-      {q:"オーム宇宙がビッグ・バンの爆発で始まったのは、今から約150億年前である", a:"×"},
-      {q:"はからずも亡くなった人の学びのため、霊域を設けて、必ず三次元に帰ってこれる", a:"×"},
-      {q:"各人それぞれに「罪に関連しない」最適なカルマがなければならない", a:"○"},
-      {q:"風の神が自分の心に暴風雨を降らせてもよい", a:"×"},
-      {q:"神への感謝の気持ちは、自分の想念の内側で繰り返すことが望ましい", a:"○"},
-      {q:"キラリオンは、魂の属性を男性、女性、中性の三属性で説明している", a:"○"},
-      {q:"科学に霊性が取り入れられることもある", a:"○"},
-      {q:"科学も芸術も、霊界からのインスピレーションで地上にもたらされる", a:"○"},
-      {q:"過去世で蓄えられた大知恵を「パーニャ・パラミッタ」と呼ぶ", a:"○"},
-      {q:"過去の自らの至らぬ経験は忘れても構わない", a:"×"},
-      {q:"三次元に住んでいる限り、カルマの刈り取りは避けられない", a:"○"},
-      {q:"神に対する愛の想いが深くなるほど、愛の実践は加速すべきである", a:"○"},
-      {q:"神に対する愛が深くなれば、霊性は高くなり、透明になってくる", a:"×"},
-      {q:"神への愛を、より深く、より大きく理解することが霊性につながる", a:"○"},
-      {q:"カルマの刈り取りは、この世での人生の目的のすべてである", a:"×"},
-      {q:"カルマの刈り取りは、自分の行いに対して、刈り取りを受けなければならない", a:"○"},
-      {q:"カルマの刈り取りができないままの人は、霊道をふさいで生まれてくることもある", a:"○"},
-      {q:"認識力の中にある人生の課題は、他人に代わってもらうことはできない", a:"○"},
-      {q:"八次元霊以上の、心の階梯はこれ以上上がることはない", a:"×"},
-      {q:"八次元霊以上の霊たちが、テラやガイアを動かす意思を持っている", a:"○"},
-      {q:"銀河圏の統合は、今後は、オーム神霊が担当する", a:"×"},
-      {q:"心の課題は、本人以外の人に解決をさせることができる", a:"×"},
-      {q:"この世で培った認識力は、あの世へ持っていけないが、悟りとして残る", a:"×"},
-      {q:"今回のビッグ・バン以前には、オーム宇宙でも、中性という属性が中心であった", a:"○"},
-      {q:"今世で、自分を変えたいと思うならば、カルマの刈り取りはすべて必要だ", a:"○"},
-      {q:"コンプラセクトを解くと、魂の奥にある「神の火花」が輝き出すことがある", a:"○"},
-      {q:"自転を遅らせ、地軸を傾けることは、地球神霊の意志による", a:"○"},
-      {q:"自由意志があるからこそ、人間は自立できる", a:"○"},
-      {q:"自由意志は、人間一人ひとりに神から与えられた", a:"○"},
-      {q:"釈尊は、自己の肉体を滅ぼすことで、悟りを得られると説いた", a:"×"},
-      {q:"人類が、アドニウムと交流できる日が、もう間近に来ている", a:"○"},
-      {q:"人生において、認識力が蓄積されることは、認識したこととはならない", a:"×"},
-      {q:"すべての課題と刈り取りは、アガシャーに管理されている", a:"○"},
-      {q:"生命の実体とは「想念エネルギー」である", a:"○"},
-      {q:"生命の本質とは「想念エネルギー」である", a:"○"},
-      {q:"生命の連鎖を断つことは、悪の想念を強化させることになる", a:"○"},
-      {q:"魂の兄弟は、最大で六人で一つの魂のグループを構成している", a:"○"},
-      {q:"地上の人間が睡眠している間は、守護霊は休んでいる", a:"×"},
-      {q:"中道とは、極端なことをせず、中間に居ることである", a:"×"},
-      {q:"つねに「よいもの」を求め、向上に自らの時間を費やすことが望ましい", a:"○"},
-      {q:"天帝は「中道」の境地を、霊能力の最高のあり方と認めている", a:"○"},
-      {q:"肉体の健康は、魂が地上の修行を行うための基本条件である", a:"○"},
-      {q:"八正道の「正見」とは、物事を客観的に正しく見るということである", a:"○"},
-      {q:"反省を行うことは、心を磨くための不可欠な修行方法である", a:"○"},
-      {q:"不合格は、今世の学びが不十分であったことを意味する", a:"○"},
-      {q:"本体が地上にいる間は、分身の一人が守護霊を務める", a:"○"},
-      {q:"未来を悲観しすぎても、霊的成長は望めない", a:"○"},
-      {q:"無限のエネルギーの流れを「愛」と定義している", a:"○"},
-      {q:"迷ったときは、神にゆだねるのではなく、自らの力で切り開くことが重要である", a:"×"},
-      {q:"守護霊は地上の魂の兄弟を守護しなくてもいいことがある", a:"×"},
-      {q:"今回の文明でシフトアップすることは地球九次元霊の悲願である", a:"○"},
-      {q:"アトランティスの科学は、現代の科学よりかなり遅れていた", a:"×"},
-      {q:"アトランティス文明末期は、ルシファーが猛威をふるっていた", a:"○"},
-      {q:"霊能力の発現は、創造原理による", a:"○"},
-      {q:"ルシフェルは、七大天使のひとりであった", a:"○"},
-      {q:"ルシは悪の化身であり、神の子ではない", a:"×"},
-      {q:"地獄のルシファーは、愛に飢えた存在である", a:"○"},
-      {q:"惑星や恒星の中には神霊が宿っていないものもある", a:"×"},
-      {q:"惑星に宿る神霊は、必ず男性体と女性体がペアになっている", a:"○"},
-      {q:"人間の諸器官のように、オーム宇宙の銀河には固有の役割がある", a:"○"},
-      {q:"本体とそれぞれの分身は、別のことを思うことができる", a:"○"},
-      {q:"文明の最後には悪想念を掃除するために天変地異が起こることが多い", a:"○"},
-      {q:"地底核実験をしても地球神霊が痛みを感じることはない", a:"×"},
-      {q:"ゴンドワナ文明時代にルシが生まれ、霊能力を発揮した", a:"×"},
-      {q:"レムリア文明では、ゼウスは地上に生まれていない", a:"×"},
-      {q:"アトランティス初期に聖クザーヌスが「神理論」を説いた", a:"○"},
-      {q:"アガシャー大王はアトランティス末期に愛を説いた", a:"○"},
-      {q:"魂のエネルギー量は地上の生き方によっては増やすことができる", a:"○"},
-      {q:"ムー大陸が沈み、種人種たちがすべてアトランティスに移住した", a:"×"},
-      {q:"地球がシフトアップすることをテラやガイアは望んでいる", a:"○"},
-      {q:"夫婦は、霊界に戻っても、会いたいときには自由に会える", a:"×"},
-      {q:"地上の人間は、睡眠中に、霊的な活動エネルギーを充電する", a:"○"},
-      {q:"神の子であっても、直ちに神と同じ力が発揮できるわけではない", a:"○"},
-      {q:"地球は究極の二元論の惑星といわれている", a:"○"},
-      {q:"人間は原罪を背負って生まれてくるので信仰が必要である", a:"×"},
-      {q:"創造力を持たない人間もいる", a:"×"},
-      {q:"シフトアップ後の地球では愛を学ぶことはできない", a:"×"},
-      {q:"原因結果が１回の転生では完結しないこともある", a:"○"},
-      {q:"大宇宙には偶然はない", a:"○"},
-      {q:"この世は仮の世であり、実在界ではない", a:"○"},
-      {q:"神は太陽にたとえられる", a:"○"},
-      {q:"見返りを求めて行う行為でも愛といえる", a:"×"},
-      {q:"大宇宙では、ひとつの結果が次の原因となる", a:"○"},
-      {q:"私たちの想念エネルギーが宇宙に発せられることはない", a:"×"},
-      {q:"この世に生まれると、原則としてあの世のことは忘れる", a:"○"},
-      {q:"悟りを得れば、カルマの刈り取りは必要ない", a:"×"},
-      {q:"神は、奴隷には自由意志を保証しなかった", a:"×"},
-      {q:"霊界に帰るときは、赤ちゃんの姿で生まれることになる", a:"×"},
-      {q:"神に背く行為をしたため、国ごとに言語が異なるようになった", a:"×"},
-      {q:"私たちはみな神の子なので、波長の合わない人はいない", a:"×"},
-      {q:"霊道を開くことは、この世の人生の目的のひとつである", a:"×"},
-      {q:"守護霊は地上の人間にインスピレーションを与えてはいけない", a:"×"},
-      {q:"本体が生まれたら、分身のひとりが守護霊をする", a:"○"},
-      {q:"この世に生まれたら、守護霊を持てるよう努力すべきだ", a:"×"},
-      {q:"現在、地獄の入り口はどんどん増え続けている", a:"×"},
-      {q:"現在、三次元での原因から結果までが短くなる傾向にある", a:"○"},
-      {q:"無私なる思いで他人のために尽くすのが菩薩である", a:"○"},
-      {q:"聖アントニウスは銀河系のプリンスである", a:"○"},
-      {q:"相手の自由意志を尊重することは、愛の表現である", a:"○"},
-      {q:"神は、自分に似せて人間を創ったが、その内訳は様々である", a:"○"},
-      {q:"神の意志に背いた者は、二度と人間に生まれ変わることはない", a:"×"},
-      {q:"魂は、男女のいずれかに固定されているわけではない", a:"○"},
-      {q:"他人の幸せを喜ぶ心は、神の心に近い", a:"○"},
-      {q:"祈りは、自分の利益のためだけに行うのが正しい", a:"×"},
-      {q:"感謝の心は、魂のサビを落とす役割を果たす", a:"○"},
-      {q:"霊界には、時間の概念が三次元と同じように存在する", a:"×"},
-      {q:"反省なき魂は、霊的な進歩を止めてしまう", a:"○"},
-      {q:"神は、特定の宗教を信じる者だけを救う", a:"×"},
-      {q:"愛を与える喜びは、受ける喜びよりも大きい", a:"○"},
-      {q:"地獄は、神が作った罰のための場所である", a:"×"},
-      {q:"守護霊の導きに耳を傾けることは、謙虚さの現れである", a:"○"},
-      {q:"魂は、幾多の転生を経て神の元へと帰っていく", a:"○"},
-      {q:"この世の苦しみは、魂を磨くための砥石である", a:"○"},
-      {q:"神の光は、すべての人に平等に降り注いでいる", a:"○"},
-      {q:"嫉妬心は、魂を濁らせる最大の原因の一つである", a:"○"},
-      {q:"正しい信仰とは、神を盲目的に信じることではない", a:"○"},
-      {q:"霊的な知識を持つ者は、持たぬ者に対して傲慢であってもよい", a:"×"},
-      {q:"自己犠牲の精神は、高次元の愛の現れである", a:"○"},
-      {q:"神は、人間の過ちを永遠に赦す", a:"○"},
-      {q:"全ての生命は、大宇宙の循環の一部である", a:"○"},
-      {q:"利己的な願いは、天界には届かない", a:"○"},
-      {q:"悟りへの道は、特別な修行者だけに開かれている", a:"×"},
-      {q:"神の存在を感じることは、魂の目覚めである", a:"○"},
-      {q:"過去世の記憶は、必要があれば守護霊から示される", a:"○"},
-      {q:"魂は、肉体の死後すぐに消滅する", a:"×"},
-      {q:"愛なき知識は、ただの暗号に過ぎない", a:"○"},
-      {q:"神は、常に私たちの内側に宿っている", a:"○"},
-      {q:"三次元世界は、霊界を映し出す鏡である", a:"○"},
-      {q:"魂の輝きは、その人の愛の深さに比例する", a:"○"},
-      {q:"神は、人間に限界を与え、それを超える力を授けた", a:"○"},
-      {q:"霊界の門は、常に開かれており、拒むことはない", a:"○"},
-      {q:"感謝なき人生は、潤いのない砂漠のようである", a:"○"},
-      {q:"神は、私たちの小さな善行をも見逃さない", a:"○"},
-      {q:"魂の目的は、愛を学び、神に近づくことである", a:"○"},
-      {q:"死は、新しい生命への門出である", a:"○"},
-      {q:"神は、私たちを導くために、多くのメッセンジャーを送っている", a:"○"},
-      {q:"神理を知ることは、真の自由を手に入れることである", a:"○"},
-      {q:"神の愛は、母親が子を想う慈しみを超えている", a:"○"},
-      {q:"私たちの心は、宇宙の縮図である", a:"○"},
-      {q:"神は、私たちが自ら立ち上がるのを待っている", a:"○"},
-      {q:"魂の旅に、終わりはない", a:"○"},
-      {q:"慈悲とは、相手の成長を願う深い愛のことである", a:"○"},
-      {q:"怒りの感情は、一瞬でこれまでの修行の成果を台無しにすることがある", a:"○"},
-      {q:"神は、耐えられない試練を人間に与えることはない", a:"○"},
-      {q:"謙虚さは、さらなる叡智を受け取るための器となる", a:"○"},
-      {q:"真の幸福は、物質的な豊かさの中にある", a:"×"},
-      {q:"魂は、自ら選んだ環境に生まれてくる", a:"○"},
-      {q:"直感は、高次元からのささやきである場合が多い", a:"○"},
-      {q:"孤独とは、神と二人きりで対話する貴重な時間である", a:"○"},
-      {q:"執着を手放すことで、魂は軽やかになる", a:"○"},
-      {q:"すべての出会いには、霊的な意味がある", a:"○"},
-      {q:"心の中で思うことも、ひとつの「行い」である", a:"○"},
-      {q:"困難に直面したとき、それは魂の飛躍のチャンスである", a:"○"},
-      {q:"神は、言葉ではなく沈黙の中で語りかけることがある", a:"○"},
-      {q:"奉仕の精神は、魂の位を上げる", a:"○"},
-      {q:"自分の弱さを認めることは、真の強さへの第一歩である", a:"○"},
-      {q:"霊的な進歩に、年齢や性別は関係ない", a:"○"},
-      {q:"神の計画は、常に完璧である", a:"○"},
-      {q:"微笑みは、周囲の人々の魂を癒す力を持つ", a:"○"},
-      {q:"誠実さは、神との約束を守ることである", a:"○"},
-      {q:"私たちは、愛し合うためにこの世に生まれてきた", a:"○"},
-      {q:"知識をひけらかすことは、悟りから遠ざかる行為である", a:"○"},
-      {q:"寛容な心は、争いの火種を消す", a:"○"},
-      {q:"神は、私たちが自分自身を愛することを望んでいる", a:"○"},
-      {q:"日常の些細な出来事の中に、神の奇跡は隠れている", a:"○"},
-      {q:"魂の兄弟は、互いに切磋琢磨し合う存在である", a:"○"},
-      {q:"言葉の一つひとつには、霊的な力が宿っている", a:"○"},
-      {q:"神への信頼を失わない限り、道は必ず拓ける", a:"○"},
-      {q:"利他の心は、魂を最も美しく輝かせる", a:"○"},
-      {q:"宇宙の正義は、最終的には必ず貫かれる", a:"○"},
-      {q:"私たちは、神の偉大さを表現するために存在する", a:"○"},
-      {q:"反省とは、過去を嘆くことではなく、未来を創ることである", a:"○"},
-      {q:"霊的な視点を持つことで、悩みは希望に変わる", a:"○"},
-      {q:"神の慈しみは、大空のように広大である", a:"○"},
-      {q:"一瞬一瞬を大切に生きることが、最高の修行である", a:"○"},
-      {q:"魂は、永遠の輝きを放つ神の子である", a:"○"},
-      {q:"神の知恵は、探求し続ける者に与えられる", a:"○"},
-      {q:"愛は、あらゆる障壁を乗り越える", a:"○"},
-      {q:"私たちは、神と共に歩んでいる", a:"○"},
-      {q:"心に平和を保つことは、世界を平和にすることに繋がる", a:"○"},
-      {q:"魂の故郷は、光り輝く天国である", a:"○"},
-      {q:"神の祝福は、感謝する心に届けられる", a:"○"},
-      {q:"神理は、私たちの心の中に既にある", a:"○"},
-      {q:"信じる力は、不可能を可能にする", a:"○"},
-      {q:"神は、永遠の命を私たちに約束している", a:"○"},
-      {q:"魂の進化に限界はない", a:"○"},
-      {q:"愛と調和こそが、宇宙の根本原理である", a:"○"},
-      {q:"私たちは、神の愛によって生かされている", a:"○"},
-      {q:"神理の道は、常に険しくとも喜びがある", a:"○"},
-      {q:"神は、私たちの最高の友である", a:"○"},
-      {q:"魂の喜びを追求することが、神の願いである", a:"○"},
-      {q:"すべての道は、最後には神へと通じている", a:"○"},
-      {q:"神の御名において、私たちは一つである", a:"○"},
-      {q:"愛の奇跡を信じ、今日を生きよう", a:"○"}
+      {q:"「アモールの三提案」は例外なく守られてきている  ", a: "×"},
+{q:"「アモールの三提案」は例外なく守られてきた  ", a: "×"},
+{q:"「アモールの三提案」は現文明の直前にアモールから提出された  ", a: "×"},
+{q:"「聖アントニウス」は十次元存在である", a: "○"},
+{q:"「第三の計画」発動を最初に申し出たのはミカエル大天使だった", a: "○"},
+{q:"「寄らば大樹の陰」は波長同通の法則を表している  ", a: "×"},
+{q:"「類は友を呼ぶ」は波長同通の法則を表している", a: "○"},
+{q:"石にも個性がある", a: "○"},
+{q:"愛の行為をしたら見返りを求めてもよい  ", a: "×"},
+{q:"愛を表現するために個性が与えられた", a: "○"},
+{q:"赤色光線の人びとは、黄金光線の人びとほど法を学ぶ必要はない  ", a: "×"},
+{q:"アガシャーはアンドロメダ銀河も担当している", a: "○"},
+{q:"アガシャー大王はアトランティス末期に愛を説いた", a: "○"},
+{q:"アセンションとは、三次元が四次元霊界になることである  ", a: "×"},
+{q:"アセンション後の地球では愛を学ぶことはできない  ", a: "×"},
+{q:"アセンション後の地球でも愛を学ぶことはできる", a: "○"},
+{q:"アセンション後は、原因結果までの時間が長くなる  ", a: "×"},
+{q:"アトランティス初期に聖クザーヌスが「理神論」を説いた", a: "○"},
+{q:"アトランティスでは愛は解かれなかった  ", a: "×"},
+{q:"アトランティスの科学は、現代の科学よりかなり遅れていた  ", a: "×"},
+{q:"アトランティスの科学は、現代の科学より進んでいた分野もある", a: "○"},
+{q:"アトランティスの反省から、現文明は最初に愛を説くことにした", a: "○"}, 
+{q:"アトランティス文明に欠けていたのは、愛である", a: "○"},
+{q:"アトランティス文明末期は、ルシファーが猛威をふるっていた", a: "○"},
+{q:"アトランティス文明初期に聖クザーヌスが「理神論」を説いた", a: "○"},
+{q:"あの世では、誰でも何でも思ったものを創造できる  ", a: "×"},
+{q:"あの世でも、魂修行のために嫌な人と一緒にいなければならない  ", a: "×"},
+{q:"あの世は仮の世である  ", a: "×"},
+{q:"あの世では、原則、次元の下から上への自由な移動はできない", a: "○"},
+{q:"あの世では姿を変えることはできない  ", a: "×"},
+{q:"あの世でも国によって言語が異なる  ", a: "×"},
+{q:"あの世に帰ると、誰でも欲しいものは何でも創造することができる  ", a: "×"},
+{q:"あの世の次元はその人のエネルギー量で決まる  ", a: "×"},
+{q:"あの世の次元は魂のエネルギー量で決まる  ", a: "×"},
+{q:"あの世は非マテリアル世界である", a: "○"},
+{q:"天の川銀河は、神の肉体である宇宙の心房に相当する  ", a: "×"},
+{q:"天の川銀河は、神の肉体である宇宙の左目に相当する  ", a: "×"},
+{q:"天の川銀河を担当するアガシャーは十三次元の存在である", a: "○"},
+{q:"天の川銀河神霊の名前はアガシャーである", a: "○"},
+{q:"アンドロメダ銀河のほうが天の川銀河よりも大きい", a: "○"},
+{q:"アンドロメダ銀河は神の肉体の心房にあたる", a: "○"},
+{q:"アンドロメダ銀河は、神の肉体である宇宙の心房に相当する", a: "○"},
+{q:"いったんつくられた魂は、オーム宇宙では消滅しない", a: "○"},
+{q:"江戸時代以前には、エル・ランティが肉体を持つ予定はなかった", a: "○"},
+{q:"江戸時代には、エル・ランティが肉体を持つ予定はなかった", a: "○"},
+{q:"エル・カンターレは地球に来てから九次元の修行を始めた  ", a: "×"},
+{q:"エル・カンターレはベーエルダから飛来した  ", a: "×"},
+{q:"エル・ランティが生まれることは、今回の文明の最初から決まっていた  ", a: "×"},
+{q:"オーム神霊は個性を持たない  ", a: "×"},
+{q:"オームは神であって、個性は持たない  ", a: "×"},
+{q:"思いはエネルギーである", a: "○"},
+{q:"科学の進歩は地球シフトアップの必須条件である  ", a: "×"},
+{q:"学者は六次元の魂であり、地獄に堕ちることはない  ", a: "×"},
+{q:"神が決めたルールを「神理」と呼ぶ", a: "○"},
+{q:"神は奴隷の自由意志は認めない  ", a: "×"},
+{q:"神に背く行為をしたため、国ごとに言語が異なるようになった  ", a: "×"},
+{q:"神の子と永遠の魂を人類の共通認識にすることが救世運動の第一歩である", a: "○"},
+{q:"神の子であっても、直ちに神と同じ力が発揮できるわけではない", a: "○"},
+{q:"神の子は神と同じ属性を持っている", a: "○"},
+{q:"神の定義は国や民族で違っているが、それを統一する必要はない  ", a: "×"},
+{q:"神は、奴隷には自由意志を保証しなかった  ", a: "×"},
+{q:"カルマの刈り取りは、原因結果の法則と関係ない  ", a: "×"},
+{q:"銀河神霊「アガシャー」は十三次元存在である", a: "○"},
+{q:"銀河系のプリンスはエデン計画からの独立を宣言した  ", a: "×"},
+{q:"九次元での神の光の分光担当は、エル・ランティとゾロアスターである  ", a: "×"},
+{q:"九次元霊はカルマを返さなくてもよい  ", a: "×"},
+{q:"九次元は「宇宙界」に含まれる", a: "○"},
+{q:"九次元霊はカルマを返さなくても良い  ", a: "×"},
+{q:"九次元霊はカルマを返さなくて良い  ", a: "×"},
+{q:"原因結果の法則はオーム宇宙の普遍的神理のひとつである", a: "○"},
+{q:"原因は必ず結果の前に存在する", a: "○"},
+{q:"現在、地獄の入り口はどんどん増え続けている  ", a: "×"},
+{q:"現在、三次元での原因から結果までが短くなる傾向にある", a: "○"},
+{q:"鉱物にも個性がある", a: "○"},
+{q:"五次元世界の人びとはすべて、最低限、神の存在を理解している", a: "○"},
+{q:"個性は七色の光線のブレンドで決められている", a: "○"},
+{q:"個性は人間に与えられているが、鉱物には与えられていない ", a: "×"},
+{q:"子どもがまいた種は、親が刈り取る義務がある ", a: "×"},
+{q:"この世に生まれたら、守護霊を持てるよう努力すべきだ ", a: "×"},
+{q:"この世に生まれると、原則としてあの世のことは忘れる", a: "○"},
+{q:"この世は仮の世であり、実在界ではない", a: "○"},
+{q:"この世に生まれて成長すると、あの世のことをすべて思い出す ", a: "×"},
+{q:"この世は「仮の世」で、あの世が「実在界」である", a: "○"},
+{q:"この世は実在するので実在界と呼ぶ ", a: "×"},
+{q:"今回の文明でシフトアップすることは地球九次元霊の悲願である", a: "○"},
+{q:"今世の出来事の原因が前世にあることもある", a: "○"},
+{q:"ゴンドワナ大陸が割れてできたのがオーストラリア大陸である ", a: "×"},
+{q:"ゴンドワナ文明時代にルシが生まれ、霊能力を発揮した ", a: "×"},
+{q:"最初にオームの思いがあって、宇宙は創造された", a: "○"},
+{q:"悟りを得れば、カルマの刈り取りは必要ない ", a: "×"},
+{q:"死んだらあの世でカルマを返すことになる ", a: "×"},
+{q:"地獄界は魂修行のために神が作った ", a: "×"},
+{q:"地獄のルシファーは、愛に飢えた存在である", a: "○"},
+{q:"地獄は神の光が全く届かない闇の世界である ", a: "×"},
+{q:"地獄霊はものに執着することはない ", a: "×"},
+{q:"死ぬと、赤ちゃんの姿になってあの世に帰る ", a: "×"},
+{q:"自分の個性の色は、あの世に帰れば誰でもわかるようになる ", a: "×"},
+{q:"自分の個性の色はあの世に変えれば皆わかる ", a: "×"},
+{q:"自分の個性の色は、あの世に帰ってもわかるわけではない", a: "○"},
+{q:"シフトアップ後の地球では愛を学ぶことはできない ", a: "×"},
+{q:"自由意志が与えられていない人もいる ", a: "×"},
+{q:"珠玉のような人類の叡智の集積を神理と呼ぶ ", a: "×"},
+{q:"守護霊は地上の人間にインスピレーションを与えてはいけない ", a: "×"},
+{q:"守護霊は肉体を持つ魂の兄弟を守護しなくてもよい ", a: "×"},
+{q:"守護霊は地上の魂の兄弟を守護しなくてもいいことがある ", a: "×"},
+{q:"受精卵に人間の魂が宿ることはない", a: "○"},
+{q:"死んであの世に行くと、この世のことはすべて忘れる ", a: "×"},
+{q:"神理知識を地球人類の共通認識とする必要はない ", a: "×"},
+{q:"すべての惑星に地獄界が存在する ", a: "×"},
+{q:"聖アントニウスは銀河系のプリンスである ", a: "×"},
+{q:"聖アントニウスは十次元神霊である ", a: "×"},
+{q:"セレニティは陰陽の陰を担当するので地味な姿をしている ", a: "×"},
+{q:"全知全能のオーム神霊は個性を持たない ", a: "×"},
+{q:"創造力を持たない人間もいる ", a: "×"},
+{q:"創造力を持たない人間もときどきいる ", a: "×"},
+{q:"想念エネルギーと創造力とは無関係である ", a: "×"},
+{q:"大宇宙には偶然はない", a: "○"},
+{q:"大宇宙には偶然の出来事がある ", a: "×"},
+{q:"大宇宙では、ひとつの結果が次の原因となる", a: "○"},
+{q:"大宇宙を循環する血液とは愛のエネルギーである", a: "○"},
+{q:"大黒天は高天原の八次元に存在する ", a: "×"},
+{q:"第三の計画では、原則として個人の過去世は明かさないことにしている", a: "○"},
+{q:"第三の計画では、当初、過去世の生を知りたい人には教えていた ", a: "×"},
+{q:"太陽神霊から太陽系全体に神の愛のエネルギーが供給される", a: "○"},
+{q:"太陽系の惑星たちは宇宙の塵が集まってできた ", a: "×"},
+{q:"太陽系はエデン計画に基づいてつくられた", a: "○"},
+{q:"魂のエネルギー量は地上の生き方によっては増やすことができる", a: "○"},
+{q:"魂修行とは神から分かれた神の子が神に向かって進むことである", a: "○"},
+{q:"魂の兄弟による転生輪廻は宇宙では一般的である ", a: "×"},
+{q:"魂の個性は各自異なるが、神へのルートはみな同じである ", a: "×"},
+{q:"魂の兄弟で、本体の方が１体の分身よりも多くの個性を持つ", a: "○"},
+{q:"魂の兄弟による転生輪廻は宇宙で普遍的なシステムである ", a: "×"},
+{q:"魂はエネルギー体であり、肉体の目には見えない", a: "○"},
+{q:"魂はエネルギー体である", a: "○"},
+{q:"魂はエネルギー体とはいえない ", a: "×"},
+{q:"魂修行のために奴隷制度は必要である ", a: "×"},
+{q:"地下核実験をしても地球神霊が痛みを感じることはない ", a: "×"},
+{q:"地球はエデンの東に位置している ", a: "×"},
+{q:"地球には三体の十次元意識が宿っている ", a: "×"},
+{q:"地球のシフトアップとは、修行場としての地球が小学校から中学校になるようなものである", a: "○"},
+{q:"地球は愛を学ぶための魂修行場といえる", a: "○"},
+{q:"地球は宇宙のDNAの宝庫である", a: "○"},
+{q:"地球は単一民族の日本のような惑星である ", a: "×"},
+{q:"地球は他惑星からの短期留学は受け付けていない ", a: "×"},
+{q:"地球がシフトアップすることをテラやガイアは望んでいる", a: "○"},
+{q:"地球に飛来する異星人は、みな宇宙界の魂といえる ", a: "×"},
+{q:"地球のシフトアップとは、中学校から高校になるようなものである ", a: "×"},
+{q:"地球は、九次元霊による文明実験の場であったと言える", a: "○"},
+{q:"地球は天の川銀河には含まれない ", a: "×"},
+{q:"地球は究極の二元論の惑星といわれている", a: "○"},
+{q:"地球人の認識力を上げることが、シフトアップのためには重要である", a: "○"},
+{q:"地球霊界で、「宇宙界」と呼ばれるのは七次元上位段階より上である ", a: "×"},
+{q:"地上の人間の悪想念の集積で地球神霊が弱ることがある", a: "○"},
+{q:"地上で政治家をしていた人も、霊界では青色光線の中心にいることもある", a: "○"},
+{q:"地上でつくったカルマは、地上で刈り取るしかない", a: "○"},
+{q:"地上での夫婦は、霊界に戻っても、会いたいときは自由に会える ", a: "×"},
+{q:"地上の人間の悪想念の集積で地球神霊が弱ることはない ", a: "×"},
+{q:"地上の人間は、睡眠中に、霊的な活動エネルギーを充電する", a: "○"},
+{q:"超能力の発現は、創造原理による", a: "○"},
+{q:"同時代に２人の九次元霊が肉体を持つことはない ", a: "×"},
+{q:"人間の諸器官のように、オーム宇宙の銀河には固有の役割がある", a: "○"},
+{q:"日蓮聖人の波動とミカエル大天使の波動は同じものである ", a: "×"},
+{q:"日本人は「神」という言葉を聞くと、みな天照大神を思い浮かべる ", a: "×"},
+{q:"如来界から生まれてきた人はこの世でも如来の悟りに達している ", a: "×"},
+{q:"如来には多くの分身がいるので固有の個性はない ", a: "×"},
+{q:"人間関係で苦労してしまうのは、あの世の霊のせいである ", a: "×"},
+{q:"人間は原罪を背負って生まれているので信仰が必要である ", a: "×"},
+{q:"八次元霊界は「如来界」とも呼ばれている", a: "○"},
+{q:"八次元上段界から九次元までを「救世主界」と呼ぶ ", a: "×"},
+{q:"波長同通の法則によらない憑依のことを無差別憑依と呼ぶ ", a: "×"},
+{q:"波長同通の法則は三次元では成り立たない ", a: "×"},
+{q:"光の天使はカルマの刈り取りのために生まれることはない ", a: "×"},
+{q:"憑依は波長同通の法則によって起こる", a: "○"},
+{q:"夫婦は、霊界に戻っても、会いたいときには自由に会える ", a: "×"},
+{q:"フォトンベルトに入ることと、みずがめ座の時代になることは同じである ", a: "×"},
+{q:"文明の最後には悪想念を掃除するために天変地異が起こることが多い", a: "○"},
+{q:"ポールシフトが起こって文明が終わることもある", a: "○"},
+{q:"菩薩界は「利他愛他」の修行をする人びとが住む世界である", a: "○"},
+{q:"本体とそれぞれの分身は、別のことを思うことができる", a: "○"},
+{q:"本体が生まれたら、分身のひとりが守護霊をする", a: "○"},
+{q:"梵天界は宇宙界に含まれる ", a: "×"},
+{q:"魔王たちは、法を説いて地獄霊たちを従わせている ", a: "×"},
+{q:"魔界にいる魂たちは反省できない", a: "○"},
+{q:"魔界の住人たちは、心の底からルシファーに忠誠を誓っている ", a: "×"},
+{q:"マルデックは核戦争で破壊されて小惑星となった ", a: "×"},
+{q:"見返りを求めて行う行為でも愛といえる ", a: "×"},
+{q:"ムー文明の学習課題は「悟性」であった", a: "○"},
+{q:"ムー大陸が沈み、種人種たちがすべてアトランティスに移住した ", a: "×"},
+{q:"ムー文明初期に聖クザーヌスが「理神論」を説いた ", a: "×"},
+{q:"無私なる愛の行動では個性を表すことはできない ", a: "×"},
+{q:"無私なる思いで他人のために尽くすのが菩薩行である", a: "○"},
+{q:"無私なる思いで他人のために尽くすのが菩薩である", a: "○"},
+{q:"四次元霊界を幽界と呼ぶこともある", a: "○"},
+{q:"ルシがサタンという名で生まれた時にも守護霊はついていた ", a: "×"},
+{q:"ルシが地上に生まれた時にも守護霊はいた ", a: "×"},
+{q:"ルシは愛の化身であり、神の子ではない  ", a: "×"},
+{q:"ルシは悪の化身であり、神の子ではない ", a: "×"},
+{q:"ルシは神の子ではない ", a: "×"},
+{q:"ルシフェルは、七大天使の一人であった", a: "○"},
+{q:"ルシフェルは、もともと七大天使のひとりであった", a: "○"},
+{q:"霊界では、愛のエネルギーが大きくなるほど上の次元へと上がる ", a: "×"},
+{q:"霊界に帰るとき、全員が元いた場所にまっすぐ戻る ", a: "×"},
+{q:"霊界の次元は魂波動の精妙さで決まる", a: "○"},
+{q:"霊界に帰るときは、赤ちゃんの姿で生まれることになる ", a: "×"},
+{q:"霊界の3.５次元を地獄界と呼ぶ ", a: "×"},
+{q:"霊界の次元は、その魂の波動の精妙さで決定される", a: "○"},
+{q:"霊道を開くことは、この世の人生の目的ではない", a: "○"},
+{q:"霊道を開くことは、この世の人生の目的である ", a: "×"},
+{q:"霊道を開くことは、この世の人生の目的のひとつである ", a: "×"},
+{q:"霊能力の発現は、創造原理による", a: "○"},
+{q:"レムリアとアトランティスの末期にアセンションした人たちがいた", a: "○"},
+{q:"レムリア文明では最も神近き芸術家にその後３年間の政治を任せた", a: "○"},
+{q:"レムリア時代、最もすぐれた芸術作品は投票で決めた ", a: "×"},
+{q:"レムリア文明では、ゼウスは地上に生まれていない ", a: "×"},
+{q:"ローカル宗教の神々でも六次元でない存在もある", a: "○"},
+{q:"惑星や恒星の中には神霊が宿っていないものもある ", a: "×"},
+{q:"惑星に宿る神霊は、必ず男性体と女性体がペアになっている", a: "○"},
+{q:"私たちの想念エネルギーが宇宙に発せられることはない ", a: "×"},
+{q:"私たちの太陽系は「エデン計画」実行のためにつくられた", a: "○"},
+{q:"私たちは神が決めたルールに従って存在している", a: "○"},
+{q:"愛の思いを持っても、神からのエネルギーが増幅されるわけではない", a: "×"},
+{q:"原因結果が１回の転生では完結しないこともある", a: "○"},
+{q:"魂の兄弟が順番に転生するのは、宇宙では一般的である ", a: "×"},
+{q:"魂修行の方法としては仏教が最もすぐれている ", a: "×"},
+{q:"私たちはみな神の子なので、波長の合わない人はいない ", a: "×"},
+{q:"神の愛のエネルギーがなくても人間は生きられる ", a: "×"},
+{q:"神は太陽にたとえられることがある", a: "○"},
+{q:"神は太陽にたとえられる", a: "○"},
+{q:"太陽系の惑星の中には、宇宙の地理が集まって作られたものもある", a: "×"},
+{q:"地球オリジナルの魂創造のためにパワトロントいう巨大装置ができた", a: "×"},
+{q:"地球には全部で１２体の九次元霊が存在している", a: "○"},
+{q:"地球の文明は地球九次元霊たちによる文明実験である", a: "○"},
+
     ];
- 
+
     // ===== DOM参照 =====
     const landingScreen  = document.getElementById('landing-screen');
     const menuScreen     = document.getElementById('menu-screen');
     const quizScreen     = document.getElementById('quiz-screen');
     const resultScreen   = document.getElementById('result-screen');
- 
+
     const enterBtn       = document.getElementById('enter-btn');
     const nicknameInput  = document.getElementById('nickname');
     const nicknameError  = document.getElementById('nickname-error');
     const menuButtons    = document.querySelectorAll('.menu-btn');
- 
+
     const timerWrap      = document.getElementById('timer-wrap');
     const timerBar       = document.getElementById('timer-bar');
     const questionText   = document.getElementById('question-text');
     const maruBtn        = document.getElementById('maru-btn');
     const batsuBtn       = document.getElementById('batsu-btn');
- 
+
     const resultMessage  = document.getElementById('result-message');
     const resultBadge    = document.getElementById('result-badge');
     const retryLink      = document.getElementById('retry-link');
     const homeLink       = document.getElementById('home-link');
     const confetti       = document.getElementById('confetti');
+    const firework       = document.getElementById('firework');
     const doorTransition = document.getElementById('door-transition');
- 
+
     const PASS_RATE            = 0.8;
     const NORMAL_LIMIT_SECONDS = 60;
- 
+
     let currentQuestions = [];
     let wrongQuestions   = [];
     let currentIndex     = 0;
@@ -892,15 +984,12 @@
     let currentMode      = 'normal';
     let playerName       = '';
     let answered         = false;
- 
-    // ===== 完全ランダム抽出 =====
+
     function selectQuestions(num) {
-      if (num >= allQuestions.length) {
-        return shuffle(allQuestions);
-      }
+      if (num >= allQuestions.length) return shuffle(allQuestions);
       return shuffle(allQuestions).slice(0, num);
     }
- 
+
     function shuffle(array) {
       const arr = [...array];
       for (let i = arr.length - 1; i > 0; i--) {
@@ -909,13 +998,13 @@
       }
       return arr;
     }
- 
+
     function showScreen(screen) {
       [landingScreen, menuScreen, quizScreen, resultScreen].forEach(s => s.classList.remove('active'));
       screen.classList.add('active');
       window.scrollTo(0, 0);
     }
- 
+
     function openDoorThen(callback) {
       doorTransition.innerHTML = '<div class="door-panel door-left"></div><div class="door-panel door-right"></div>';
       doorTransition.classList.add('active');
@@ -924,7 +1013,7 @@
         callback();
       }, 850);
     }
- 
+
     function validateNickname() {
       const name = nicknameInput.value.trim();
       if (!name) {
@@ -936,15 +1025,13 @@
       playerName = name;
       return true;
     }
- 
+
     function fitQuestionText() {
       questionText.style.fontSize = '';
       questionText.style.lineHeight = '';
- 
       const isSmallMobile    = window.innerWidth <= 480;
       const isMobile         = window.innerWidth <= 768;
       const isLandscapeSmall = window.innerHeight <= 500;
- 
       if (isLandscapeSmall) {
         questionText.style.fontSize   = 'clamp(18px, 3.2vw, 30px)';
         questionText.style.lineHeight = '1.55';
@@ -959,21 +1046,21 @@
         questionText.style.lineHeight = '1.55';
       }
     }
- 
+
     function setButtonsDisabled(flag) {
       maruBtn.disabled  = flag;
       batsuBtn.disabled = flag;
     }
- 
+
     function clearTimer() {
       if (timerId) { clearInterval(timerId); timerId = null; }
     }
- 
+
     function updateTimerBar() {
       const percent = Math.max(0, (timeLeft / NORMAL_LIMIT_SECONDS) * 100);
       timerBar.style.width = percent + '%';
     }
- 
+
     function startTimer() {
       clearTimer();
       timeLeft = NORMAL_LIMIT_SECONDS;
@@ -990,30 +1077,65 @@
         updateTimerBar();
       }, 100);
     }
- 
+
+    // ===== 豪華コンフェッティ（花びら＋四角＋星） =====
     function makeConfetti() {
       confetti.innerHTML = '';
-      const colors = ['#ff1744','#ff9100','#ffee58','#00c853','#00b0ff','#304ffe','#d500f9'];
-      for (let i = 0; i < 80; i++) {
+      const colors = ['#ff1744','#ff9100','#ffee58','#00c853','#00b0ff','#304ffe','#d500f9','#ff80ab','#ffe57f'];
+      const shapes = ['', 'petal', 'petal', 'star'];
+      const count  = window.innerWidth < 480 ? 80 : 130;
+      for (let i = 0; i < count; i++) {
         const piece = document.createElement('div');
-        piece.className = 'confetti-piece';
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        piece.className = 'confetti-piece ' + shape;
+        const size = 8 + Math.random() * 14;
         piece.style.left              = Math.random() * 100 + '%';
+        piece.style.width             = size + 'px';
+        piece.style.height            = shape === 'star' ? size + 'px' : (size * 1.8) + 'px';
         piece.style.background        = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDuration = (3 + Math.random() * 4) + 's';
-        piece.style.animationDelay    = (Math.random() * 2) + 's';
-        piece.style.opacity           = String(0.6 + Math.random() * 0.4);
+        piece.style.animationDuration = (3.5 + Math.random() * 4.5) + 's';
+        piece.style.animationDelay    = (Math.random() * 3) + 's';
+        piece.style.opacity           = String(0.7 + Math.random() * 0.3);
         piece.style.transform         = `rotate(${Math.random() * 360}deg)`;
         confetti.appendChild(piece);
       }
     }
- 
+
+    // ===== 花火バースト =====
+    function makeFireworks() {
+      firework.innerHTML = '';
+      firework.classList.add('show');
+      const colors = ['#ff1744','#ff9100','#ffee58','#00c853','#00b0ff','#d500f9'];
+      const bursts = 5;
+      for (let b = 0; b < bursts; b++) {
+        const bx = 10 + Math.random() * 80;
+        const by = 5 + Math.random() * 50;
+        setTimeout(() => {
+          const NUM_SPARKS = 16;
+          for (let s = 0; s < NUM_SPARKS; s++) {
+            const spark = document.createElement('div');
+            spark.className = 'spark';
+            const angle = (s / NUM_SPARKS) * Math.PI * 2;
+            const dist  = 60 + Math.random() * 80;
+            spark.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+            spark.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+            spark.style.left       = bx + '%';
+            spark.style.top        = by + '%';
+            spark.style.background = colors[Math.floor(Math.random() * colors.length)];
+            spark.style.width      = (4 + Math.random() * 4) + 'px';
+            spark.style.height     = spark.style.width;
+            firework.appendChild(spark);
+          }
+        }, b * 350);
+      }
+    }
+
     function renderQuestion() {
       const current = currentQuestions[currentIndex];
       questionText.textContent = current.q;
       fitQuestionText();
       answered = false;
       setButtonsDisabled(false);
- 
       if (currentMode === 'normal') {
         timerWrap.style.display = 'block';
         startTimer();
@@ -1022,7 +1144,7 @@
         clearTimer();
       }
     }
- 
+
     function goNextQuestion() {
       currentIndex += 1;
       if (currentIndex >= currentQuestions.length) {
@@ -1037,17 +1159,17 @@
       quizScreen.classList.remove('flash-correct', 'flash-wrong');
       renderQuestion();
     }
- 
+
     function handleAnswer(choice) {
       if (answered) return;
       answered = true;
       setButtonsDisabled(true);
       clearTimer();
- 
+
       const current   = currentQuestions[currentIndex];
       const correct   = current.a;
       const isCorrect = choice === correct;
- 
+
       if (currentMode === 'normal') {
         if (isCorrect) {
           correctCount += 1;
@@ -1066,7 +1188,7 @@
         setTimeout(goNextQuestion, 700);
       }
     }
- 
+
     function startQuiz(count) {
       currentMode      = 'normal';
       correctCount     = 0;
@@ -1077,34 +1199,37 @@
       showScreen(quizScreen);
       renderQuestion();
     }
- 
+
     function showResult() {
       clearTimer();
       showScreen(resultScreen);
- 
+
       const total = currentQuestions.length;
       const pass  = correctCount >= Math.ceil(total * PASS_RATE);
- 
-      resultMessage.textContent = `大変お疲れ様でした。あなたの正解数は ${correctCount}／${total} です。`;
+
+      resultMessage.textContent = `大変お疲れ様でした。${playerName}さんの正解数は ${correctCount}／${total} です。`;
       resultBadge.textContent   = `${correctCount}問正解！！`;
       resultBadge.className     = 'result-badge ' + (pass ? 'pass' : 'fail');
       resultScreen.classList.remove('pass', 'fail');
       resultScreen.classList.add(pass ? 'pass' : 'fail');
 
       const challengeEl = document.getElementById('result-challenge');
-      challengeEl.textContent = wrongQuestions.length > 0 ? 'また挑戦してね！次こそ全問正解☆' : '';
- 
+      challengeEl.textContent = wrongQuestions.length > 0 ? 'また挑戦してね！次こそ全問正解☆' : '🎉 全問正解おめでとう！！ 🎉';
+
       if (pass) {
         makeConfetti();
         confetti.classList.add('show');
+        makeFireworks();
       } else {
         confetti.classList.remove('show');
         confetti.innerHTML = '';
+        firework.classList.remove('show');
+        firework.innerHTML = '';
       }
- 
+
       retryLink.style.display = wrongQuestions.length > 0 ? 'inline' : 'none';
     }
- 
+
     function startRetryWrongQuestions() {
       if (!wrongQuestions.length) { backToHome(); return; }
       currentMode      = 'retry';
@@ -1114,7 +1239,7 @@
       showScreen(quizScreen);
       renderQuestion();
     }
- 
+
     function backToHome() {
       clearTimer();
       currentMode      = 'normal';
@@ -1126,18 +1251,20 @@
       resultScreen.classList.remove('pass', 'fail');
       confetti.classList.remove('show');
       confetti.innerHTML = '';
+      firework.classList.remove('show');
+      firework.innerHTML = '';
       showScreen(landingScreen);
     }
- 
+
     // ===== イベント =====
     enterBtn.addEventListener('click', () => {
       openDoorThen(() => showScreen(menuScreen));
     });
- 
+
     nicknameInput.addEventListener('input', () => {
       if (nicknameInput.value.trim()) nicknameError.textContent = '';
     });
- 
+
     menuButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         if (!validateNickname()) return;
@@ -1145,16 +1272,15 @@
         startQuiz(count);
       });
     });
- 
+
     maruBtn.addEventListener('click',  () => handleAnswer('○'));
     batsuBtn.addEventListener('click', () => handleAnswer('×'));
- 
+
     retryLink.addEventListener('click', () => { startRetryWrongQuestions(); });
     homeLink.addEventListener('click',  () => { backToHome(); });
- 
+
     window.addEventListener('resize',            fitQuestionText);
     window.addEventListener('orientationchange', fitQuestionText);
- 
     document.addEventListener('DOMContentLoaded', () => { fitQuestionText(); });
   </script>
 </body>
