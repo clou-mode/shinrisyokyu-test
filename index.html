@@ -1177,12 +1177,8 @@
       if (currentMode === 'normal') {
         if (isCorrect) {
           correctCount += 1;
-          quizScreen.classList.add('flash-correct');
-          quizScreen.classList.remove('flash-wrong');
         } else {
           wrongQuestions.push(current);
-          quizScreen.classList.add('flash-wrong');
-          quizScreen.classList.remove('flash-correct');
         }
         setTimeout(goNextQuestion, 180);
       } else {
