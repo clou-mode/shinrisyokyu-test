@@ -312,6 +312,16 @@
       background: #fff;
       align-items: stretch;
       justify-content: stretch;
+      transition: background-color 0.2s ease;
+    }
+
+    /* 解き直し時の正解・不正解の背景色スタイル */
+    #quiz-screen.feedback-correct {
+      background-color: rgba(66, 165, 245, 0.25) !important; /* 薄い青 */
+    }
+
+    #quiz-screen.feedback-wrong {
+      background-color: rgba(229, 115, 115, 0.3) !important;  /* 薄い赤 */
     }
 
     .quiz-wrap {
@@ -360,7 +370,6 @@
       overflow: hidden;
     }
 
-    /* 文字を可能な限り大きく、最大2段程度に美しく収める設定 */
     .question-text {
       width: min(100%, 1200px);
       max-height: 100%;
@@ -397,7 +406,7 @@
       cursor: pointer;
       font-weight: 900;
       font-size: clamp(52px, 15vw, 140px);
-      background: #fff;
+      background: rgba(255, 255, 255, 0.85);
       transition: background .15s ease, transform .05s ease, opacity .15s ease;
       display: flex;
       align-items: center;
@@ -994,7 +1003,6 @@
       const container = questionText.parentElement;
       const textLength = questionText.textContent.length;
       
-      // 画面サイズに応じた初期の最大文字サイズ
       let maxSize = 52;
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
@@ -1005,7 +1013,6 @@
         maxSize = 40;
       }
 
-      // 文字数に応じて最大の目安サイズを決定
       let targetSize = maxSize;
       if (textLength > 45) {
         targetSize = maxSize * 0.65;
@@ -1015,7 +1022,6 @@
 
       questionText.style.fontSize = `${targetSize}px`;
 
-      // 枠内に綺麗に収まるまで自動で微調整縮小
       let currentSize = targetSize;
       const minSize = 14;
 
@@ -1112,6 +1118,9 @@
     }
 
     function renderQuestion() {
+      // 背景フィードバック色をリセット
+      quizScreen.classList.remove('feedback-correct', 'feedback-wrong');
+
       const current = currentQuestions[currentIndex];
       questionText.textContent = current.q.trim();
       
@@ -1158,9 +1167,19 @@
         } else {
           wrongQuestions.push(current);
         }
+        goNextQuestion();
+      } else {
+        // 解き直し（retry）モード時の演出追加
+        if (isCorrect) {
+          quizScreen.classList.add('feedback-correct'); // 薄い青画面
+        } else {
+          quizScreen.classList.add('feedback-wrong');   // 薄い赤画面
+        }
+
+        setTimeout(() => {
+          goNextQuestion();
+        }, 350);
       }
-      
-      goNextQuestion();
     }
 
     function startQuiz(count) {
@@ -1203,6 +1222,7 @@
 
     function backToHome() {
       clearTimer();
+      quizScreen.classList.remove('feedback-correct', 'feedback-wrong');
       currentMode      = 'normal';
       currentIndex     = 0;
       currentQuestions = [];
