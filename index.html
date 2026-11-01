@@ -4,6 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>神理 初級テスト ○×クイズ</title>
+<script>
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'F12') {
+          e.preventDefault();
+        }
+        if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+          e.preventDefault();
+        }
+        if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) {
+          e.preventDefault();
+        }
+      });
+    </script>
+</head>
+<body>
   <style>
     * { box-sizing: border-box; }
 
@@ -402,7 +420,7 @@
     .answer-btn.batsu { color: #222; border-left: 2px solid #ddd; }
 
     /* ========================================
-       リザルト画面 — 華やかバージョン
+       リザルト画面 — 金ピカ・紙吹雪バージョン
        ======================================== */
     #result-screen {
       position: relative;
@@ -415,16 +433,8 @@
         max(20px, var(--safe-bottom))
         max(16px, var(--safe-left));
       overflow: hidden;
-    }
-
-    /* 合格：黄金のグラデーション背景 */
-    #result-screen.pass {
-      background: radial-gradient(ellipse at 50% 30%, #fff9e6 0%, #fff3b0 40%, #ffd740 100%);
-    }
-
-    /* 不合格：落ち着いたグレー */
-    #result-screen.fail {
-      background: var(--bg-gray);
+      /* 全回答終了時の金ピカグラデーション背景 */
+      background: radial-gradient(ellipse at 50% 30%, #fffae6 0%, #ffe57f 35%, #ffc107 70%, #ff8f00 100%);
     }
 
     .result-inner {
@@ -433,16 +443,14 @@
       width: min(100%, 1100px);
     }
 
-    /* 合格時 — 輝くタイトル */
+    /* 王冠アイコン */
     .result-crown {
       font-size: clamp(40px, 10vw, 80px);
       line-height: 1;
       margin-bottom: 8px;
       animation: crownBounce 1s ease infinite alternate;
-      display: none;
+      display: block;
     }
-
-    #result-screen.pass .result-crown { display: block; }
 
     @keyframes crownBounce {
       from { transform: translateY(0) rotate(-5deg); }
@@ -454,17 +462,16 @@
       font-weight: 900;
       line-height: 1.7;
       margin-bottom: 16px;
+      color: #3e2723;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
     }
 
-    /* 合格バッジ — レインボーグラデーション文字 */
+    /* 正解数バッジ — レインボーグラデーション文字 */
     .result-badge {
       font-weight: 900;
       line-height: 1;
       margin-bottom: 20px;
       letter-spacing: .08em;
-    }
-
-    .result-badge.pass {
       font-size: clamp(60px, 16vw, 180px);
       background: linear-gradient(90deg, #ff1744, #ff9100, #ffee58, #00c853, #00b0ff, #d500f9);
       background-size: 300% 300%;
@@ -472,13 +479,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       animation: rainbowFlow 3s linear infinite, scorePop .5s cubic-bezier(.34,1.56,.64,1) both;
-      filter: drop-shadow(0 4px 12px rgba(255,167,38,.4));
-    }
-
-    .result-badge.fail {
-      font-size: clamp(54px, 14vw, 150px);
-      color: #555;
-      animation: scorePop .5s cubic-bezier(.34,1.56,.64,1) both;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,.2));
     }
 
     @keyframes scorePop {
@@ -486,16 +487,14 @@
       100% { transform: scale(1) rotate(0deg);    opacity: 1; }
     }
 
-    /* 合格時のスター装飾 */
+    /* スター装飾 */
     .result-stars {
       font-size: clamp(20px, 4vw, 36px);
       letter-spacing: .3em;
       margin-bottom: 12px;
-      display: none;
+      display: block;
       animation: starPulse 1.5s ease infinite alternate;
     }
-
-    #result-screen.pass .result-stars { display: block; }
 
     @keyframes starPulse {
       from { opacity: 0.7; transform: scale(1); }
@@ -504,10 +503,11 @@
 
     .result-challenge {
       font-size: clamp(16px, 4vw, 24px);
-      font-weight: 700;
-      color: #e65100;
+      font-weight: 900;
+      color: #b71c1c;
       margin-bottom: 20px;
       min-height: 1.6em;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
     }
 
     .result-links {
@@ -522,10 +522,14 @@
       font-size: clamp(16px, 4.5vw, 20pt);
       font-weight: 700;
       line-height: 1.8;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 6px 20px;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     /* ========================================
-       コンフェッティ（合格時・大量）
+       コンフェッティ（紙吹雪舞う演出）
        ======================================== */
     .confetti {
       pointer-events: none;
@@ -559,13 +563,13 @@
       border-radius: 50% 0 50% 0;
     }
 
-    /* 星型（疑似） */
+    /* 星型 */
     .confetti-piece.star {
       clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
     }
 
     /* ========================================
-       花火バースト（合格時）
+       花火バースト
        ======================================== */
     .firework {
       pointer-events: none;
@@ -1078,12 +1082,12 @@
       }, 100);
     }
 
-    // ===== 豪華コンフェッティ（花びら＋四角＋星） =====
+    // ===== 豪華コンフェッティ（紙吹雪生成） =====
     function makeConfetti() {
       confetti.innerHTML = '';
       const colors = ['#ff1744','#ff9100','#ffee58','#00c853','#00b0ff','#304ffe','#d500f9','#ff80ab','#ffe57f'];
       const shapes = ['', 'petal', 'petal', 'star'];
-      const count  = window.innerWidth < 480 ? 80 : 130;
+      const count  = window.innerWidth < 480 ? 90 : 150;
       for (let i = 0; i < count; i++) {
         const piece = document.createElement('div');
         const shape = shapes[Math.floor(Math.random() * shapes.length)];
@@ -1093,8 +1097,8 @@
         piece.style.width             = size + 'px';
         piece.style.height            = shape === 'star' ? size + 'px' : (size * 1.8) + 'px';
         piece.style.background        = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDuration = (3.5 + Math.random() * 4.5) + 's';
-        piece.style.animationDelay    = (Math.random() * 3) + 's';
+        piece.style.animationDuration = (2.5 + Math.random() * 3.5) + 's';
+        piece.style.animationDelay    = (Math.random() * 2.5) + 's';
         piece.style.opacity           = String(0.7 + Math.random() * 0.3);
         piece.style.transform         = `rotate(${Math.random() * 360}deg)`;
         confetti.appendChild(piece);
@@ -1173,8 +1177,12 @@
       if (currentMode === 'normal') {
         if (isCorrect) {
           correctCount += 1;
+          quizScreen.classList.add('flash-correct');
+          quizScreen.classList.remove('flash-wrong');
         } else {
           wrongQuestions.push(current);
+          quizScreen.classList.add('flash-wrong');
+          quizScreen.classList.remove('flash-correct');
         }
         setTimeout(goNextQuestion, 180);
       } else {
@@ -1200,32 +1208,23 @@
       renderQuestion();
     }
 
+    // ===== 全回答終了時のリザルト画面表示 =====
     function showResult() {
       clearTimer();
       showScreen(resultScreen);
 
       const total = currentQuestions.length;
-      const pass  = correctCount >= Math.ceil(total * PASS_RATE);
 
       resultMessage.textContent = `大変お疲れ様でした。${playerName}さんの正解数は ${correctCount}／${total} です。`;
       resultBadge.textContent   = `${correctCount}問正解！！`;
-      resultBadge.className     = 'result-badge ' + (pass ? 'pass' : 'fail');
-      resultScreen.classList.remove('pass', 'fail');
-      resultScreen.classList.add(pass ? 'pass' : 'fail');
 
       const challengeEl = document.getElementById('result-challenge');
       challengeEl.textContent = wrongQuestions.length > 0 ? 'また挑戦してね！次こそ全問正解☆' : '🎉 全問正解おめでとう！！ 🎉';
 
-      if (pass) {
-        makeConfetti();
-        confetti.classList.add('show');
-        makeFireworks();
-      } else {
-        confetti.classList.remove('show');
-        confetti.innerHTML = '';
-        firework.classList.remove('show');
-        firework.innerHTML = '';
-      }
+      // 全回答終了後：金ピカ背景の上に紙吹雪を盛大に舞わせる
+      makeConfetti();
+      confetti.classList.add('show');
+      makeFireworks();
 
       retryLink.style.display = wrongQuestions.length > 0 ? 'inline' : 'none';
     }
@@ -1248,7 +1247,6 @@
       wrongQuestions   = [];
       correctCount     = 0;
       quizScreen.classList.remove('flash-correct', 'flash-wrong');
-      resultScreen.classList.remove('pass', 'fail');
       confetti.classList.remove('show');
       confetti.innerHTML = '';
       firework.classList.remove('show');
