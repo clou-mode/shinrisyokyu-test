@@ -312,16 +312,17 @@
       background: #fff;
       align-items: stretch;
       justify-content: stretch;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.15s ease;
+      cursor: default;
     }
 
-    /* 解き直し時の正解・不正解の背景色スタイル */
+    /* 解き直し時の正解・不正解の背景色スタイル（見本サイトに合わせた色味） */
     #quiz-screen.feedback-correct {
-      background-color: rgba(66, 165, 245, 0.25) !important; /* 薄い青 */
+      background-color: rgba(66, 165, 245, 0.35) !important; /* しっかりした薄い青 */
     }
 
     #quiz-screen.feedback-wrong {
-      background-color: rgba(229, 115, 115, 0.3) !important;  /* 薄い赤 */
+      background-color: rgba(229, 115, 115, 0.4) !important;  /* しっかりした薄い赤 */
     }
 
     .quiz-wrap {
@@ -467,7 +468,7 @@
       margin-bottom: 20px;
       letter-spacing: .08em;
       font-size: clamp(60px, 16vw, 180px);
-      background: linear-gradient(90deg, #ff1744, #ff9100, #ffee58, #00c853, #00b0ff, #d500f9);
+      background: linear-gradient(90deg, #ff1744, #ff9100, #ffee58, #00c853, #00b0ff, #304ffe, #d500f9);
       background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -644,7 +645,7 @@
   </section>
 
   <section id="quiz-screen" class="screen">
-    <div class="quiz-wrap">
+    <div class="quiz-wrap" id="quiz-wrap-click">
       <div class="quiz-top">
         <div id="timer-wrap" class="timer-wrap">
           <div class="timer-bar-bg">
@@ -941,6 +942,7 @@
     const confetti       = document.getElementById('confetti');
     const firework       = document.getElementById('firework');
     const doorTransition = document.getElementById('door-transition');
+    const quizWrapClick  = document.getElementById('quiz-wrap-click');
 
     const PASS_RATE            = 0.8;
     const NORMAL_LIMIT_SECONDS = 60;
@@ -954,6 +956,7 @@
     let currentMode      = 'normal';
     let playerName       = '';
     let answered         = false;
+    let waitingForNext   = false; // 解き直し時に結果表示中でクリック待ちの状態か
 
     function selectQuestions(num) {
       if (num >= allQuestions.length) return shuffle(allQuestions);
@@ -1118,7 +1121,7 @@
     }
 
     function renderQuestion() {
-      // 背景フィードバック色をリセット
+      waitingForNext = false;
       quizScreen.classList.remove('feedback-correct', 'feedback-wrong');
 
       const current = currentQuestions[currentIndex];
@@ -1169,18 +1172,24 @@
         }
         goNextQuestion();
       } else {
-        // 解き直し（retry）モード時の演出追加
+        // ===== 解き直し（retry）モード：見本サイトと同じタイミング仕様 =====
+        waitingForNext = true;
         if (isCorrect) {
-          quizScreen.classList.add('feedback-correct'); // 薄い青画面
+          quizScreen.classList.add('feedback-correct'); // 正解なら青い画面
         } else {
-          quizScreen.classList.add('feedback-wrong');   // 薄い赤画面
+          quizScreen.classList.add('feedback-wrong');   // 不正解なら赤い画面
         }
-
-        setTimeout(() => {
-          goNextQuestion();
-        }, 350);
+        // 青または赤の画面が表示され、画面どこでも（またはボタンを押して）次へ進む状態になります
       }
     }
+
+    // 解き直し中、結果画面（青・赤）が表示されたら、画面のどこをタップ/クリックしても次へ進む
+    quizWrapClick.addEventListener('click', () => {
+      if (currentMode === 'retry' && waitingForNext) {
+        waitingForNext = false;
+        goNextQuestion();
+      }
+    });
 
     function startQuiz(count) {
       currentMode      = 'normal';
@@ -1222,6 +1231,7 @@
 
     function backToHome() {
       clearTimer();
+      waitingForNext = false;
       quizScreen.classList.remove('feedback-correct', 'feedback-wrong');
       currentMode      = 'normal';
       currentIndex     = 0;
@@ -1252,8 +1262,8 @@
       });
     });
 
-    maruBtn.addEventListener('click',  () => handleAnswer('○'));
-    batsuBtn.addEventListener('click', () => handleAnswer('×'));
+    maruBtn.addEventListener('click',  (e) => { e.stopPropagation(); handleAnswer('○'); });
+    batsuBtn.addEventListener('click', (e) => { e.stopPropagation(); handleAnswer('×'); });
 
     retryLink.addEventListener('click', () => { startRetryWrongQuestions(); });
     homeLink.addEventListener('click',  () => { backToHome(); });
