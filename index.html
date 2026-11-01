@@ -4,22 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>神理 初級テスト ○×クイズ</title>
-  <script>
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12') {
-        e.preventDefault();
-      }
-      if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
-        e.preventDefault();
-      }
-      if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) {
-        e.preventDefault();
-      }
-    });
-  </script>
 </head>
 <body>
   <style>
@@ -35,8 +19,6 @@
       --red: #d50000;
       --gray: #666;
       --bg-gray: #efefef;
-      --ok-bg: #d8efff;
-      --ng-bg: #ffd9d9;
     }
 
     html, body {
@@ -330,11 +312,7 @@
       background: #fff;
       align-items: stretch;
       justify-content: stretch;
-      transition: background-color .12s linear;
     }
-
-    #quiz-screen.flash-correct { background: var(--ok-bg); }
-    #quiz-screen.flash-wrong   { background: var(--ng-bg); }
 
     .quiz-wrap {
       width: 100%;
@@ -383,7 +361,6 @@
       font-weight: 900;
       line-height: 1.55;
       font-size: clamp(22px, 5.4vw, 48px);
-      user-select: none;
       word-break: keep-all;
       overflow-wrap: anywhere;
       letter-spacing: .01em;
@@ -411,7 +388,6 @@
       font-size: clamp(64px, 18vw, 180px);
       background: #fff;
       transition: background .15s ease, transform .05s ease, opacity .15s ease;
-      user-select: none;
     }
 
     .answer-btn:active { transform: scale(.995); }
@@ -419,9 +395,7 @@
     .answer-btn.maru { color: var(--red); }
     .answer-btn.batsu { color: #222; border-left: 2px solid #ddd; }
 
-    /* ========================================
-       リザルト画面 — 金ピカ・紙吹雪バージョン
-       ======================================== */
+    /* リザルト画面 */
     #result-screen {
       position: relative;
       align-items: center;
@@ -433,7 +407,6 @@
         max(20px, var(--safe-bottom))
         max(16px, var(--safe-left));
       overflow: hidden;
-      /* 全回答終了時の金ピカグラデーション背景 */
       background: radial-gradient(ellipse at 50% 30%, #fffae6 0%, #ffe57f 35%, #ffc107 70%, #ff8f00 100%);
     }
 
@@ -443,7 +416,6 @@
       width: min(100%, 1100px);
     }
 
-    /* 王冠アイコン */
     .result-crown {
       font-size: clamp(40px, 10vw, 80px);
       line-height: 1;
@@ -466,14 +438,13 @@
       text-shadow: 0 1px 2px rgba(255,255,255,0.8);
     }
 
-    /* 正解数バッジ — レインボーグラデーション文字 */
     .result-badge {
       font-weight: 900;
       line-height: 1;
       margin-bottom: 20px;
       letter-spacing: .08em;
       font-size: clamp(60px, 16vw, 180px);
-      background: linear-gradient(90deg, #ff1744, #ff9100, #ffee58, #00c853, #00b0ff, #304ffe, #d500f9);
+      background: linear-gradient(90deg, #ff1744, #ff9100, #ffee58, #00c853, #00b0ff, #d500f9);
       background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -487,7 +458,6 @@
       100% { transform: scale(1) rotate(0deg);    opacity: 1; }
     }
 
-    /* スター装飾 */
     .result-stars {
       font-size: clamp(20px, 4vw, 36px);
       letter-spacing: .3em;
@@ -528,9 +498,6 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    /* ========================================
-       コンフェッティ（紙吹雪舞う演出）
-       ======================================== */
     .confetti {
       pointer-events: none;
       position: absolute;
@@ -558,19 +525,14 @@
       100% { transform: translateY(110dvh) rotate(720deg) translateX(-20px); }
     }
 
-    /* 花びら型 */
     .confetti-piece.petal {
       border-radius: 50% 0 50% 0;
     }
 
-    /* 星型 */
     .confetti-piece.star {
       clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
     }
 
-    /* ========================================
-       花火バースト
-       ======================================== */
     .firework {
       pointer-events: none;
       position: absolute;
@@ -662,7 +624,7 @@
         <div class="notes-title">各問題を解くときの注意点</div>
         ① 各問題の制限時間は６０秒です。<br>
         ② 問題は、答え直すことはできません。<br>
-        ③ 間違えた問題のみをやり直すことは出来ますが、正解ならば青い画面、間違いならば赤い画面になるだけです。<br>
+        ③ 間違えた問題のみをやり直すことができます。<br>
         ④ ランダムで問題が出題されますので、何度でも挑戦してみてください。
       </div>
 
@@ -947,7 +909,7 @@
       {q:"太陽系の惑星の中には、宇宙の塵が集まって作られたものもある", a: "×"},
       {q:"地球オリジナルの魂創造のためにパワトロントいう巨大装置ができた", a: "×"},
       {q:"地球には全部で１２体の九次元霊が存在している", a: "○"},
-      {q:"地球の文明は地球九次元霊たちによる文明実験である", a: "○"]
+      {q:"地球の文明は地球九次元霊たちによる文明実験である", a: "○"},
     ];
 
     // ===== DOM参照 =====
@@ -1081,7 +1043,7 @@
       }, 100);
     }
 
-    // ===== 豪華コンフェッティ（紙吹雪生成） =====
+    /* 紙吹雪生成 */
     function makeConfetti() {
       confetti.innerHTML = '';
       const colors = ['#ff1744','#ff9100','#ffee58','#00c853','#00b0ff','#304ffe','#d500f9','#ff80ab','#ffe57f'];
@@ -1104,7 +1066,7 @@
       }
     }
 
-    // ===== 花火バースト =====
+    /* 花火バースト */
     function makeFireworks() {
       firework.innerHTML = '';
       firework.classList.add('show');
@@ -1159,7 +1121,6 @@
         }
         return;
       }
-      quizScreen.classList.remove('flash-correct', 'flash-wrong');
       renderQuestion();
     }
 
@@ -1179,17 +1140,10 @@
         } else {
           wrongQuestions.push(current);
         }
-        setTimeout(goNextQuestion, 180);
-      } else {
-        if (isCorrect) {
-          quizScreen.classList.add('flash-correct');
-          quizScreen.classList.remove('flash-wrong');
-        } else {
-          quizScreen.classList.add('flash-wrong');
-          quizScreen.classList.remove('flash-correct');
-        }
-        setTimeout(goNextQuestion, 700);
       }
+      
+      // 正否背景表示を出さずに即座に次の問題へ遷移
+      goNextQuestion();
     }
 
     function startQuiz(count) {
@@ -1198,12 +1152,10 @@
       wrongQuestions   = [];
       currentIndex     = 0;
       currentQuestions = selectQuestions(count);
-      quizScreen.classList.remove('flash-correct', 'flash-wrong');
       showScreen(quizScreen);
       renderQuestion();
     }
 
-    // ===== 全回答終了時のリザルト画面表示 =====
     function showResult() {
       clearTimer();
       showScreen(resultScreen);
@@ -1216,7 +1168,6 @@
       const challengeEl = document.getElementById('result-challenge');
       challengeEl.textContent = wrongQuestions.length > 0 ? 'また挑戦してね！次こそ全問正解☆' : '🎉 全問正解おめでとう！！ 🎉';
 
-      // 全回答終了後：金ピカ背景の上に紙吹雪を盛大に舞わせる
       makeConfetti();
       confetti.classList.add('show');
       makeFireworks();
@@ -1229,7 +1180,6 @@
       currentMode      = 'retry';
       currentIndex     = 0;
       currentQuestions = [...wrongQuestions];
-      quizScreen.classList.remove('flash-correct', 'flash-wrong');
       showScreen(quizScreen);
       renderQuestion();
     }
@@ -1241,7 +1191,6 @@
       currentQuestions = [];
       wrongQuestions   = [];
       correctCount     = 0;
-      quizScreen.classList.remove('flash-correct', 'flash-wrong');
       confetti.classList.remove('show');
       confetti.innerHTML = '';
       firework.classList.remove('show');
